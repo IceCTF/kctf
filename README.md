@@ -8,6 +8,8 @@ kCTF is a Kubernetes-based infrastructure for CTF competitions.
 * [gcloud](https://cloud.google.com/sdk/install)
 * [docker](https://docs.docker.com/install/)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) 1.17+
+* [yq](https://github.com/mikefarah/yq/releases/tag/3.4.1) 3.4.1
+* (mac only) - [coreutils](https://formulae.brew.sh/formula/coreutils)
 
 ## Getting Started / Documentation
 

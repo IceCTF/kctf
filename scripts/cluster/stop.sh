@@ -19,7 +19,7 @@ source "${DIR}/scripts/lib/config.sh"
 load_config
 
 gcloud container clusters delete ${CLUSTER_NAME}
-gcloud compute routers delete "kctf-${CLUSTER_NAME}-nat-router" --region "${ZONE::-2}" --quiet
+gcloud compute routers delete "kctf-${CLUSTER_NAME}-nat-router" --region "${ZONE::${#ZONE}-2}" --quiet
 
 SUFFIX=$(echo "${PROJECT}-${CLUSTER_NAME}-${ZONE}" | sha1sum)
 GSA_NAME="kctf-gcsfuse-${SUFFIX:0:16}"

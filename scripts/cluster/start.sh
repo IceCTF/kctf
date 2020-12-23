@@ -31,12 +31,12 @@ fi
 
 EXISTING_ROUTER=$(gcloud compute routers list --filter "name=kctf-${CLUSTER_NAME}-nat-router" --format 'get(name)')
 if [ -z "${EXISTING_ROUTER}" ]; then
-  gcloud compute routers create "kctf-${CLUSTER_NAME}-nat-router" --network=default --region "${ZONE::-2}"
+  gcloud compute routers create "kctf-${CLUSTER_NAME}-nat-router" --network=default --region "${ZONE::${#ZONE}-2}"
 fi
 
-EXISTING_NAT=$(gcloud compute routers nats list --router "kctf-${CLUSTER_NAME}-nat-router" --router-region "${ZONE::-2}" --format 'get(name)')
+EXISTING_NAT=$(gcloud compute routers nats list --router "kctf-${CLUSTER_NAME}-nat-router" --router-region "${ZONE::${#ZONE}-2}" --format 'get(name)')
 if [ -z "${EXISTING_NAT}" ]; then
-  gcloud compute routers nats create "kctf-${CLUSTER_NAME}-nat-config" --router-region "${ZONE::-2}" --router kctf-${CLUSTER_NAME}-nat-router --nat-all-subnet-ip-ranges --auto-allocate-nat-external-ips
+  gcloud compute routers nats create "kctf-${CLUSTER_NAME}-nat-config" --router-region "${ZONE::${#ZONE}-2}" --router kctf-${CLUSTER_NAME}-nat-router --nat-all-subnet-ip-ranges --auto-allocate-nat-external-ips
 fi
 
 get_cluster_creds
