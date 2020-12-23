@@ -101,7 +101,7 @@ jobs:
       name: Push images
       if: steps.modified.outputs.modified
       run: |
-        IMAGE_GCR="gcr.io/${{ secrets.GCR_PROJECT }}/kctf-${{ matrix.image }}"
+        IMAGE_GCR="gcr.io/${{ secrets.GCR_PROJECT }}/${{ matrix.image }}"
         docker tag "${{ matrix.image }}" "$IMAGE_GCR"
         DIGEST="$(docker push "$IMAGE_GCR" | grep 'digest: ' | sed 's/.*\(sha256:[^ ]*\).*/\1/')"
         echo "::set-output name=${{ matrix.image }}-digest::${DIGEST}"
